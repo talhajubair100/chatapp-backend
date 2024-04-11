@@ -1,7 +1,8 @@
 const Message = require('../model/Message')
+const { Server } = require("socket.io");
 
 const initSocket = (server, corsOptions) => {
-  const io = require('socket.io')(server, { cors: corsOptions })
+  let io = new Server(server, { cors: corsOptions })
 
   let onlineUsers = []
 
