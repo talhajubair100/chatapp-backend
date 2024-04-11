@@ -25,7 +25,6 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   exposedHeaders: ['Content-Range', 'X-Content-Range']
-
 };
 
 
@@ -36,15 +35,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.COOKIE_SIGNATURE))
 
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   )
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-//   next()
-// });
 
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
