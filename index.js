@@ -9,6 +9,7 @@ const { initSocket } = require('./socket/index')
 const app = express()
 require('dotenv').config()
 
+const allowedOrigins = ['https://chatapp-frontend-beta.vercel.app']
 const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
@@ -26,7 +27,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-const allowedOrigins = ['https://chatapp-frontend-beta.vercel.app', 'http://localhost:3000',]
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
