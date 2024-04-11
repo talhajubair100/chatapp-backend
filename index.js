@@ -8,7 +8,8 @@ const { initSocket } = require('./socket/index')
 
 const app = express()
 require('dotenv').config()
-app.use(cors({
+
+const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
@@ -20,7 +21,10 @@ app.use(cors({
     return callback(null, true);
   },
   credentials: true // Allow credentials to be sent with the request
-}));
+};
+
+
+app.use(cors(corsOptions))
 
 const allowedOrigins = ['http://localhost:3000'];
 
@@ -54,6 +58,6 @@ const server = app.listen(process.env.PORT, () => {
 })
 
 // socket.io
-initSocket(server)
+initSocket(server, corsOptions)
 
 module.exports = app;
